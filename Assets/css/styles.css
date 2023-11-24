@@ -1,66 +1,70 @@
-@import './button.css';
-   
-   body {
-        margin: 0;
-        padding: 0;
-        background-color: #efefef;
-        font-family: 'Montserrat', sans-serif;
-    }
+@import "./button.css";
 
-    * {
-        box-sizing: border-box;
-    }
-    #traial{
-        height: 70%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: top;
-    }
-    #randomDiv{
-        margin: 100px;
-    }
-    #randomDiv .child {
-        width: 100px;
-        height: 100px;
-        background-color: #1b2a49;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px;
-        margin: 0 auto;
-        color: #ffffff;
-        font-weight: 700;
-        font-size: 80px;
-        text-align:center
-    }
-    #traial .guess{
-        width: 100px;
-        height: 100px;
-        background-color: #5480d8;
-        display: inline-flex;
-        border-radius: 10px;
-        margin: 0 auto;
-        color: #ffffff;
-        font-weight: 700;
-        align-items: center;
-        justify-content: center;
-        font-size: 80px;
-    }
-    #randomDiv span {
-        opacity: 0;
-        visibility: hidden;
-        text-indent: -999px;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #efefef;
+  font-family: "Montserrat", sans-serif;
+}
 
-    .main-conatiner {
-        display: flex;
-        height: 100vh;
-        justify-content: center;
-        align-items: center;
-        max-width: 1170px;
-        padding: 20px;
-        margin: 0 auto;
-        text-align: center;
-        flex-wrap: wrap;
-    }
+* {
+  box-sizing: border-box;
+}
+#traial {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+}
+#randomDiv {
+  margin: 100px;
+}
+#randomDiv .child {
+  width: 100px;
+  height: 100px;
+  background-color: #1b2a49;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 0 auto;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 80px;
+  text-align: center;
+}
+#num2 {
+  margin-left: 75px !important;
+  margin-right: 75px !important;
+}
+#traial .guess {
+  width: 100px;
+  height: 100px;
+  background-color: #5480d8;
+  display: inline-flex;
+  border-radius: 10px;
+  margin: 0 auto;
+  color: #ffffff;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+}
+#randomDiv span {
+  opacity: 0;
+  visibility: hidden;
+  text-indent: -999px;
+}
+
+.main-conatiner {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  max-width: 1170px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+  flex-wrap: wrap;
+}

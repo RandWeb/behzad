@@ -1,223 +1,13 @@
-const persianChars = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
-let container = document.getElementsByClassName("main-conatiner")[0];
-let buttons = document.getElementsByClassName("buttons")[0];
 
+const persianChars = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+let startBtn = document.getElementById("start-btn");
+let trialContainer = document.getElementById("traial");
+let container = document.getElementsByClassName("main-conatiner")[0];
+let guessContainer = document.getElementById("guess-container");
 let num1 = document.getElementById("num1");
 let num2 = document.getElementById("num2");
 let num3 = document.getElementById("num3");
 let guess = document.getElementById("guess");
-const audio = document.getElementById("audio");
-let songs = [
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-  {
-    song: "./Assets/sounds/1.mp3",
-    name: "name 1",
-  },
-  {
-    song: "./Assets/sounds/2.mp3",
-    name: "name 2",
-  },
-  {
-    song: "./Assets/sounds/3.mp3",
-    name: "name 3",
-  },
-  {
-    song: "./Assets/sounds/4.mp3",
-    name: "name 4",
-  },
-];
-
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -225,11 +15,10 @@ const shuffle = (array) => {
   }
   return array;
 };
-songs = shuffle(songs);
-let tempSong = songs;
+
 let resultBlock = [];
-let numberOfSongs = 51;
 let tasks = [];
+let it = 1;
 for (let taskOfIndex = 0; taskOfIndex < 13; taskOfIndex++) {
   let block = [];
   for (let i = 0; i < 4; i++) {
@@ -241,10 +30,7 @@ for (let taskOfIndex = 0; taskOfIndex < 13; taskOfIndex++) {
     }
     traial.number = numbers;
     traial.guess = -1;
-    traial.index = i;
-    traial.song = songs[numberOfSongs];
-    songs.pop(songs[numberOfSongs]);
-    numberOfSongs--;
+    traial.index = it++;
     block.push(traial);
   }
   let randomOfblock = Math.floor(Math.random() * 4) + 0;
@@ -264,147 +50,247 @@ for (let taskOfIndex = 0; taskOfIndex < 13; taskOfIndex++) {
     }
     return traial;
   });
-
   tasks.push(block);
 }
-
-localStorage.setItem("tasks", JSON.stringify(tasks));
 let randomOfTask = Math.floor(Math.random() * 9) + 0;
+
 let timer = 0;
-let interval = setInterval(() => {
-  timer = 1 + timer;
-  if (timer == 13) {
-    console.log(timer);
+
+let allowedPressSpace = false;
+let rt = 0;
+let selectedBlock;
+let selectedtrial;
+let displayTime = 100;
+let guessTimeGap = 100;
+let guessDisplayTime = 100;
+let trialInterval = 100;
+let blockTimeStep =
+  4 * (displayTime + guessTimeGap + guessDisplayTime + trialInterval);
+let indexOfTrial = 1;
+tasks = shuffle(tasks);
+let intervalTask;
+function RunApplication() {
+  intervalTask = setInterval(() => {
+    if (timer == blockTimeStep) {
+      timer = 0;
+    }
+    if (indexOfTrial == 1) {
+      selectedBlock = tasks[0];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 2) {
+      selectedBlock = tasks[1];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 3) {
+      selectedBlock = tasks[2];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 4) {
+      selectedBlock = tasks[3];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 5) {
+      selectedBlock = tasks[4];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 6) {
+      selectedBlock = tasks[5];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 7) {
+      selectedBlock = tasks[6];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 8) {
+      selectedBlock = tasks[7];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 9) {
+      selectedBlock = tasks[8];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 10) {
+      selectedBlock = tasks[9];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 11) {
+      selectedBlock = tasks[10];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 12) {
+      selectedBlock = tasks[11];
+      handlerStep(selectedBlock);
+    } else if (indexOfTrial == 13) {
+      selectedBlock = tasks[12];
+      handlerStep(selectedBlock);
+    }
+    timer = 1 + timer;
+  });
+
+  let indexOfBlock = 0;
+  let hasCallTrial1 = false;
+  let hasCallGuess1 = false;
+  let hasCallTraial2 = false;
+  let hasCallGuess2 = false;
+  let hasCallTrial3 = false;
+  let hasCallGuess3 = false;
+  let hasCallTrial4 = false;
+  let hasCallGuess4 = false;
+
+  function handlerStep(block) {
+    if (!hasCallTrial1 && timer == 0) {
+      allowedPressSpace = false;
+      selectedtrial = block[0];
+      showTraials();
+
+      indexOfBlock++;
+      hasCallTrial1 = true;
+    } else if (!hasCallGuess1 && timer == displayTime + guessTimeGap) {
+      allowedPressSpace = true;
+      rt = Date.now();
+      selectedtrial = block[0];
+      showGuess();
+
+      indexOfBlock++;
+      hasCallGuess1 = true;
+    } else if (
+      !hasCallTraial2 &&
+      timer == displayTime + guessTimeGap + guessDisplayTime + trialInterval
+    ) {
+      allowedPressSpace = false;
+      selectedtrial = block[1];
+      showTraials();
+
+      indexOfBlock++;
+      hasCallTraial2 = true;
+    } else if (
+      !hasCallGuess2 &&
+      timer ==
+        2 * (displayTime + guessTimeGap) + guessDisplayTime + trialInterval
+    ) {
+      allowedPressSpace = true;
+      rt = Date.now();
+      selectedtrial = block[1];
+      showGuess();
+
+      indexOfBlock++;
+      hasCallGuess2 = true;
+    } else if (
+      !hasCallTrial3 &&
+      timer ==
+        2 * (displayTime + guessTimeGap + guessDisplayTime + trialInterval)
+    ) {
+      allowedPressSpace = false;
+      selectedtrial = block[2];
+      showTraials();
+
+      indexOfBlock++;
+      hasCallTrial3 = true;
+    } else if (
+      !hasCallGuess3 &&
+      timer ==
+        3 * (displayTime + guessTimeGap) +
+          2 * (guessDisplayTime + trialInterval)
+    ) {
+      allowedPressSpace = true;
+      rt = Date.now();
+      selectedtrial = block[2];
+      showGuess();
+
+      indexOfBlock++;
+      hasCallGuess3 = true;
+    } else if (
+      !hasCallTrial4 &&
+      timer ==
+        3 * (displayTime + guessTimeGap + guessDisplayTime + trialInterval)
+    ) {
+      allowedPressSpace = false;
+      selectedtrial = block[3];
+      showTraials();
+
+      indexOfBlock++;
+      hasCallTrial4 = false;
+    } else if (
+      !hasCallGuess4 &&
+      timer ==
+        4 * (displayTime + guessTimeGap) +
+          3 * (guessDisplayTime + trialInterval)
+    ) {
+      allowedPressSpace = true;
+      rt = Date.now();
+      selectedtrial = block[3];
+      showGuess();
+      indexOfBlock = 0;
+      hasCallTrial1 = false;
+      hasCallGuess1 = false;
+
+      hasCallTraial2 = false;
+      hasCallGuess2 = false;
+
+      hasCallTrial3 = false;
+      hasCallGuess3 = false;
+
+      hasCallTrial4 = false;
+      hasCallGuess4 = false;
+      ++indexOfTrial;
+    }
   }
-  if (timer == 26) {
-    console.log(timer);
-  }
-  if (timer == 39) {
-    console.log(timer);
-  }
-  if (timer == 52) {
-    console.log(timer);
+}
+
+setInterval(() => {
+  if (indexOfTrial == 14) {
+    clear();
   }
 });
-/*
-let response = block;
-let counter = 0;
-let rt = 0;
 
-let selectedBlock;
-let allowedPressSpace = false;
+function showTraials() {
 
-let interval = setInterval(() => {
-  timer = 1 + timer;
-  if (timer == 1) {
-    pause();
-    allowedPressSpace = false;
-    selectedBlock = response[counter];
-    showTraials(selectedBlock);
-    counter++;
-  }
+  play();
+  num1.classList.remove("btn-hidden");
+  num2.classList.remove("btn-hidden");
+  num3.classList.remove("btn-hidden");
+  num1.innerText = persianChars[selectedtrial.number[0]];
+  num2.innerText = persianChars[selectedtrial.number[1]];
+  num3.innerText = persianChars[selectedtrial.number[2]];
+  guessContainer.classList.add("btn-hidden");
+  guessContainer.classList.remove("btn-visible");
+}
 
-  if (timer == 2) {
-    play();
-    allowedPressSpace = true;
-    rt = Date.now();
-    showGuess(selectedBlock);
-  }
+function showGuess() {
+  //showContainer();
 
-  if (timer == 4) {
-    pause();
-    allowedPressSpace = false;
-    selectedBlock = response[counter];
-    showTraials(selectedBlock);
-    counter++;
-  }
+    console.log(selectedtrial);
+  num1.classList.add("btn-hidden");
+  num2.classList.add("btn-hidden");
+  num3.classList.add("btn-hidden");
+  guessContainer.classList.remove("btn-hidden");
+  guessContainer.classList.add("btn-visible");
+  guess.innerText = persianChars[selectedtrial.guess];
+}
+let indexOfPressSpace = 0;
+document.addEventListener("keydown", (e) => {
+  if (e.code == "Space" && allowedPressSpace == true) {
+    let isInValid = selectedtrial.number.indexOf(selectedtrial.guess) === -1;
+    selectedtrial.rt = Date.now() - rt;
+    selectedtrial.isCorrect = !isInValid;
+    selectedtrial.insertTime = Date.now();
 
-  if (timer == 5) {
-    play();
-    rt = Date.now();
-    allowedPressSpace = true;
-    showGuess(selectedBlock);
+    localStorage.setItem(
+      `traial ${indexOfPressSpace}`,
+      JSON.stringify(selectedtrial)
+    );
+    indexOfPressSpace++;
   }
+});
 
-  if (timer == 7) {
-    pause();
-    allowedPressSpace = false;
-    selectedBlock = response[counter];
-    showTraials(selectedBlock);
-    counter++;
-  }
+function hideContainer() {
+  container.classList.add("btn-hidden");
+}
 
-  if (timer == 8) {
-    play();
-    allowedPressSpace = true;
-    rt = Date.now();
-    showGuess(selectedBlock);
-  }
-  if (timer == 10) {
-    pause();
-    allowedPressSpace = false;
-    selectedBlock = response[counter];
-    showTraials(selectedBlock);
-    counter++;
-  }
-
-  if (timer == 11) {
-    play();
-    allowedPressSpace = true;
-    rt = Date.now();
-    showGuess(selectedBlock);
-  }
-  if (timer == 13) {
-    clear();
-    pause();
-    allowedPressSpace = false;
-    isShowBlock = false;
-    localStorage.setItem(`step ${1}`, JSON.stringify(resultBlock));
-  }
-}, 1100);
+function showContainer() {
+  container.classList.remove("btn-hidden");
+}
 
 function clear() {
-  clearInterval(interval);
+  clearInterval(intervalTask);
   let h1Elem = document.createElement("h1");
   h1Elem.innerText = "تمام";
   container.innerHTML = "";
   container.appendChild(h1Elem);
 }
 
-function showTraials(item) {
-  num1.classList.remove("btn-hidden");
-  num2.classList.remove("btn-hidden");
-  num3.classList.remove("btn-hidden");
-  num1.innerText = persianChars[item.number[0]];
-  num2.innerText = persianChars[item.number[1]];
-  num3.innerText = persianChars[item.number[2]];
-  buttons.classList.add("btn-hidden");
-  buttons.classList.remove("btn-visible");
-}
-
-function showGuess(item) {
-  num1.classList.add("btn-hidden");
-  num2.classList.add("btn-hidden");
-  num3.classList.add("btn-hidden");
-  buttons.classList.remove("btn-hidden");
-  buttons.classList.add("btn-visible");
-  guess.innerText = persianChars[item.guess];
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.code == "Space" && allowedPressSpace == true) {
-    let isInValid = selectedBlock.number.indexOf(selectedBlock.guess) === -1;
-    selectedBlock.rt = Date.now() - rt;
-    selectedBlock.isCorrect = !isInValid;
-    resultBlock.push(`traial ${1} `, selectedBlock);
-  }
-});
-
 function play() {
-  let myAudio = document.querySelector("audio");
-  console.log(selectedBlock);
-  myAudio.setAttribute("src", selectedBlock.song["song"]);
-
+  let myAudio = document.getElementById(selectedtrial.index);
   let playPromise = myAudio.play();
   if (playPromise !== undefined) {
     playPromise
@@ -415,8 +301,14 @@ function play() {
   }
 }
 
+startBtn.addEventListener("click", () => {
+  trialContainer.classList.remove("d-none");
+  startBtn.classList.add("d-none");
+  RunApplication();
+});
+
 function pause() {
   audio.pause();
   audio.removeAttribute("src");
 }
-*/
+
